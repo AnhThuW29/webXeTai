@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
+import Home from "./layouts/Home/Home.jsx";
+import SanPhamPage from "./layouts/SanPhamPage/SanPhamPage";
+import SingleSP from "./layouts/SanPhamPage/SingleSP";
+import LienHe from "./layouts/LienHe/LienHe.jsx";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Outlet />}>
+                    <Route index element={<Home />} />
+                </Route>
+                <Route path="xetai">
+                    <Route index element={<SanPhamPage />} />
+                    <Route path=":xetaiID" element={<SingleSP />} />
+                </Route>
+                <Route path="lienhe">
+                    <Route index element={<LienHe />} />
+                </Route>
+            </Routes>
+        </BrowserRouter>
+    );
 }
 
 export default App;
